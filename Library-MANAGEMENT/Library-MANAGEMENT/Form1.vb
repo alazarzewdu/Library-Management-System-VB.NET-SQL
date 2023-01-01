@@ -1,7 +1,14 @@
 ﻿Public Class Form1
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBoxImageInput.Click
+        OpenFileDialog1.FileName = ""
+        'OpenFileDialog1.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.Desktop
+        OpenFileDialog1.Filter = "JPEG (*.jpeg;*.jpg)|*.jpeg;*.jpg"
 
+        If (OpenFileDialog1.ShowDialog(Me) = System.Windows.Forms.DialogResult.OK) Then
+            IMG_FileNameInput = OpenFileDialog1.FileName
+            PictureBoxImageInput.ImageLocation = IMG_FileNameInput
+        End If
     End Sub
 
     Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles ButtonSave.Click
@@ -202,4 +209,11 @@
     End Sub
 
    
+    Private Sub ButtonClearAll_Click(sender As Object, e As EventArgs) Handles ButtonClearAll.Click
+        ButtonSave.Text = "Save"
+        StatusInput = "Save"
+        ButtonIDMaker.Enabled = True
+        TextBoxId.Enabled = True
+        ClearInputUpdateData()
+    End Sub
 End Class
