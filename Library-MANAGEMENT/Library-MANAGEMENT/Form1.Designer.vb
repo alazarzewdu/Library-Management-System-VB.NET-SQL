@@ -22,7 +22,10 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ButtonClearAll = New System.Windows.Forms.Button()
+        Me.ButtonSave = New System.Windows.Forms.Button()
         Me.TextBoxShelf = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TextBoxAuthor = New System.Windows.Forms.TextBox()
@@ -32,27 +35,30 @@ Partial Class Form1
         Me.TextBoxId = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.PictureBoxImageInput = New System.Windows.Forms.PictureBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.CheckBoxById = New System.Windows.Forms.CheckBox()
-        Me.CheckBoxByName = New System.Windows.Forms.CheckBox()
-        Me.CheckBoxByAuthor = New System.Windows.Forms.CheckBox()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.ButtonClearSelectedandImagePreview = New System.Windows.Forms.Button()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.PictureBoxImagePreview = New System.Windows.Forms.PictureBox()
+        Me.CheckBoxByAuthor = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxByName = New System.Windows.Forms.CheckBox()
+        Me.CheckBoxById = New System.Windows.Forms.CheckBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.ButtonRefresh = New System.Windows.Forms.Button()
         Me.ButtonDelete = New System.Windows.Forms.Button()
         Me.ButtonEdit = New System.Windows.Forms.Button()
-        Me.ButtonClearAll = New System.Windows.Forms.Button()
-        Me.ButtonSave = New System.Windows.Forms.Button()
-        Me.PictureBoxImageInput = New System.Windows.Forms.PictureBox()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SelectAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.PictureBoxImageInput, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBoxImagePreview, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBoxImageInput, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -75,6 +81,30 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
+        '
+        'ButtonClearAll
+        '
+        Me.ButtonClearAll.Image = Global.Library_MANAGEMENT.My.Resources.Resources.clear1
+        Me.ButtonClearAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ButtonClearAll.Location = New System.Drawing.Point(119, 186)
+        Me.ButtonClearAll.Name = "ButtonClearAll"
+        Me.ButtonClearAll.Size = New System.Drawing.Size(65, 43)
+        Me.ButtonClearAll.TabIndex = 12
+        Me.ButtonClearAll.Text = "Clear"
+        Me.ButtonClearAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonClearAll.UseVisualStyleBackColor = True
+        '
+        'ButtonSave
+        '
+        Me.ButtonSave.Image = Global.Library_MANAGEMENT.My.Resources.Resources.save
+        Me.ButtonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ButtonSave.Location = New System.Drawing.Point(9, 186)
+        Me.ButtonSave.Name = "ButtonSave"
+        Me.ButtonSave.Size = New System.Drawing.Size(65, 43)
+        Me.ButtonSave.TabIndex = 11
+        Me.ButtonSave.Text = "Save"
+        Me.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonSave.UseVisualStyleBackColor = True
         '
         'TextBoxShelf
         '
@@ -159,6 +189,16 @@ Partial Class Form1
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Image"
         '
+        'PictureBoxImageInput
+        '
+        Me.PictureBoxImageInput.Image = Global.Library_MANAGEMENT.My.Resources.Resources.image1
+        Me.PictureBoxImageInput.Location = New System.Drawing.Point(588, 19)
+        Me.PictureBoxImageInput.Name = "PictureBoxImageInput"
+        Me.PictureBoxImageInput.Size = New System.Drawing.Size(174, 174)
+        Me.PictureBoxImageInput.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBoxImageInput.TabIndex = 0
+        Me.PictureBoxImageInput.TabStop = False
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.ButtonClearSelectedandImagePreview)
@@ -180,65 +220,14 @@ Partial Class Form1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "GroupBox2"
         '
-        'Label6
+        'ButtonClearSelectedandImagePreview
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(270, 19)
-        Me.Label6.Name = "Label6"
-        Me.Label6.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Label6.Size = New System.Drawing.Size(44, 13)
-        Me.Label6.TabIndex = 9
-        Me.Label6.Text = "Search:"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(320, 16)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(204, 20)
-        Me.TextBox1.TabIndex = 10
-        '
-        'CheckBoxById
-        '
-        Me.CheckBoxById.AutoSize = True
-        Me.CheckBoxById.Location = New System.Drawing.Point(320, 42)
-        Me.CheckBoxById.Name = "CheckBoxById"
-        Me.CheckBoxById.Size = New System.Drawing.Size(37, 17)
-        Me.CheckBoxById.TabIndex = 11
-        Me.CheckBoxById.Text = "ID"
-        Me.CheckBoxById.UseVisualStyleBackColor = True
-        '
-        'CheckBoxByName
-        '
-        Me.CheckBoxByName.AutoSize = True
-        Me.CheckBoxByName.Location = New System.Drawing.Point(363, 42)
-        Me.CheckBoxByName.Name = "CheckBoxByName"
-        Me.CheckBoxByName.Size = New System.Drawing.Size(54, 17)
-        Me.CheckBoxByName.TabIndex = 12
-        Me.CheckBoxByName.Text = "Name"
-        Me.CheckBoxByName.UseVisualStyleBackColor = True
-        '
-        'CheckBoxByAuthor
-        '
-        Me.CheckBoxByAuthor.AutoSize = True
-        Me.CheckBoxByAuthor.Location = New System.Drawing.Point(423, 42)
-        Me.CheckBoxByAuthor.Name = "CheckBoxByAuthor"
-        Me.CheckBoxByAuthor.Size = New System.Drawing.Size(57, 17)
-        Me.CheckBoxByAuthor.TabIndex = 13
-        Me.CheckBoxByAuthor.Text = "Author"
-        Me.CheckBoxByAuthor.UseVisualStyleBackColor = True
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(9, 68)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(536, 287)
-        Me.DataGridView1.TabIndex = 14
+        Me.ButtonClearSelectedandImagePreview.Location = New System.Drawing.Point(588, 259)
+        Me.ButtonClearSelectedandImagePreview.Name = "ButtonClearSelectedandImagePreview"
+        Me.ButtonClearSelectedandImagePreview.Size = New System.Drawing.Size(174, 23)
+        Me.ButtonClearSelectedandImagePreview.TabIndex = 16
+        Me.ButtonClearSelectedandImagePreview.Text = "Clear Selected and Image"
+        Me.ButtonClearSelectedandImagePreview.UseVisualStyleBackColor = True
         '
         'Label7
         '
@@ -250,14 +239,19 @@ Partial Class Form1
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "Image"
         '
-        'ButtonClearSelectedandImagePreview
+        'DataGridView1
         '
-        Me.ButtonClearSelectedandImagePreview.Location = New System.Drawing.Point(588, 259)
-        Me.ButtonClearSelectedandImagePreview.Name = "ButtonClearSelectedandImagePreview"
-        Me.ButtonClearSelectedandImagePreview.Size = New System.Drawing.Size(174, 23)
-        Me.ButtonClearSelectedandImagePreview.TabIndex = 16
-        Me.ButtonClearSelectedandImagePreview.Text = "Clear Selected and Image"
-        Me.ButtonClearSelectedandImagePreview.UseVisualStyleBackColor = True
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.DataGridView1.Location = New System.Drawing.Point(9, 68)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridView1.Size = New System.Drawing.Size(536, 287)
+        Me.DataGridView1.TabIndex = 14
         '
         'PictureBoxImagePreview
         '
@@ -268,6 +262,53 @@ Partial Class Form1
         Me.PictureBoxImagePreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxImagePreview.TabIndex = 13
         Me.PictureBoxImagePreview.TabStop = False
+        '
+        'CheckBoxByAuthor
+        '
+        Me.CheckBoxByAuthor.AutoSize = True
+        Me.CheckBoxByAuthor.Location = New System.Drawing.Point(423, 42)
+        Me.CheckBoxByAuthor.Name = "CheckBoxByAuthor"
+        Me.CheckBoxByAuthor.Size = New System.Drawing.Size(57, 17)
+        Me.CheckBoxByAuthor.TabIndex = 13
+        Me.CheckBoxByAuthor.Text = "Author"
+        Me.CheckBoxByAuthor.UseVisualStyleBackColor = True
+        '
+        'CheckBoxByName
+        '
+        Me.CheckBoxByName.AutoSize = True
+        Me.CheckBoxByName.Location = New System.Drawing.Point(363, 42)
+        Me.CheckBoxByName.Name = "CheckBoxByName"
+        Me.CheckBoxByName.Size = New System.Drawing.Size(54, 17)
+        Me.CheckBoxByName.TabIndex = 12
+        Me.CheckBoxByName.Text = "Name"
+        Me.CheckBoxByName.UseVisualStyleBackColor = True
+        '
+        'CheckBoxById
+        '
+        Me.CheckBoxById.AutoSize = True
+        Me.CheckBoxById.Location = New System.Drawing.Point(320, 42)
+        Me.CheckBoxById.Name = "CheckBoxById"
+        Me.CheckBoxById.Size = New System.Drawing.Size(37, 17)
+        Me.CheckBoxById.TabIndex = 11
+        Me.CheckBoxById.Text = "ID"
+        Me.CheckBoxById.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(320, 16)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(204, 20)
+        Me.TextBox1.TabIndex = 10
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(270, 19)
+        Me.Label6.Name = "Label6"
+        Me.Label6.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Label6.Size = New System.Drawing.Size(44, 13)
+        Me.Label6.TabIndex = 9
+        Me.Label6.Text = "Search:"
         '
         'ButtonRefresh
         '
@@ -305,39 +346,31 @@ Partial Class Form1
         Me.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ButtonEdit.UseVisualStyleBackColor = True
         '
-        'ButtonClearAll
+        'ContextMenuStrip1
         '
-        Me.ButtonClearAll.Image = Global.Library_MANAGEMENT.My.Resources.Resources.clear1
-        Me.ButtonClearAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ButtonClearAll.Location = New System.Drawing.Point(119, 186)
-        Me.ButtonClearAll.Name = "ButtonClearAll"
-        Me.ButtonClearAll.Size = New System.Drawing.Size(65, 43)
-        Me.ButtonClearAll.TabIndex = 12
-        Me.ButtonClearAll.Text = "Clear"
-        Me.ButtonClearAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ButtonClearAll.UseVisualStyleBackColor = True
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteToolStripMenuItem, Me.EditToolStripMenuItem, Me.SelectAllToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 92)
         '
-        'ButtonSave
+        'DeleteToolStripMenuItem
         '
-        Me.ButtonSave.Image = Global.Library_MANAGEMENT.My.Resources.Resources.save
-        Me.ButtonSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ButtonSave.Location = New System.Drawing.Point(9, 186)
-        Me.ButtonSave.Name = "ButtonSave"
-        Me.ButtonSave.Size = New System.Drawing.Size(65, 43)
-        Me.ButtonSave.TabIndex = 11
-        Me.ButtonSave.Text = "Save"
-        Me.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ButtonSave.UseVisualStyleBackColor = True
+        Me.DeleteToolStripMenuItem.Image = Global.Library_MANAGEMENT.My.Resources.Resources.delete
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteToolStripMenuItem.Text = "Delete"
         '
-        'PictureBoxImageInput
+        'EditToolStripMenuItem
         '
-        Me.PictureBoxImageInput.Image = Global.Library_MANAGEMENT.My.Resources.Resources.image1
-        Me.PictureBoxImageInput.Location = New System.Drawing.Point(588, 19)
-        Me.PictureBoxImageInput.Name = "PictureBoxImageInput"
-        Me.PictureBoxImageInput.Size = New System.Drawing.Size(174, 174)
-        Me.PictureBoxImageInput.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBoxImageInput.TabIndex = 0
-        Me.PictureBoxImageInput.TabStop = False
+        Me.EditToolStripMenuItem.Image = Global.Library_MANAGEMENT.My.Resources.Resources.e
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.EditToolStripMenuItem.Text = "Edit"
+        '
+        'SelectAllToolStripMenuItem
+        '
+        Me.SelectAllToolStripMenuItem.Name = "SelectAllToolStripMenuItem"
+        Me.SelectAllToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.SelectAllToolStripMenuItem.Text = "Select All"
         '
         'Form1
         '
@@ -353,11 +386,12 @@ Partial Class Form1
         Me.Text = "Unity University Library"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.PictureBoxImageInput, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBoxImagePreview, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBoxImageInput, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -387,5 +421,9 @@ Partial Class Form1
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents ButtonClearSelectedandImagePreview As System.Windows.Forms.Button
+    Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents DeleteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SelectAllToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

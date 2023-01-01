@@ -320,4 +320,12 @@
             Return
         End Try
     End Sub
+
+    Private Function AllCellsSelected(dgv As DataGridView) As Boolean
+        AllCellsSelected = (DataGridView1.SelectedCells.Count = (DataGridView1.RowCount * DataGridView1.Columns.GetColumnCount(DataGridViewElementStates.Visible)))
+    End Function
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        ButtonDelete_Click(sender, e)
+    End Sub
 End Class
