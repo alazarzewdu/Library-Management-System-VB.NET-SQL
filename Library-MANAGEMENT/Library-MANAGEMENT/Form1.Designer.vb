@@ -363,7 +363,7 @@ Partial Class Form1
         '
         Me.EditToolStripMenuItem.Image = Global.Library_MANAGEMENT.My.Resources.Resources.e
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.EditToolStripMenuItem.Text = "Edit"
         '
         'SelectAllToolStripMenuItem

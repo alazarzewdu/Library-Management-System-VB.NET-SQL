@@ -328,4 +328,8 @@
     Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
         ButtonDelete_Click(sender, e)
     End Sub
+
+    Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
+        ButtonEdit_Click(sender, e)
+    End Sub
 End Class
