@@ -45,7 +45,6 @@ Partial Class Form1
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SelectAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PictureBoxImagePreview = New System.Windows.Forms.PictureBox()
-        Me.CheckBoxByAuthor = New System.Windows.Forms.CheckBox()
         Me.CheckBoxByName = New System.Windows.Forms.CheckBox()
         Me.CheckBoxById = New System.Windows.Forms.CheckBox()
         Me.TextBoxSearch = New System.Windows.Forms.TextBox()
@@ -206,7 +205,6 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.Label7)
         Me.GroupBox2.Controls.Add(Me.DataGridView1)
         Me.GroupBox2.Controls.Add(Me.PictureBoxImagePreview)
-        Me.GroupBox2.Controls.Add(Me.CheckBoxByAuthor)
         Me.GroupBox2.Controls.Add(Me.CheckBoxByName)
         Me.GroupBox2.Controls.Add(Me.CheckBoxById)
         Me.GroupBox2.Controls.Add(Me.TextBoxSearch)
@@ -290,16 +288,6 @@ Partial Class Form1
         Me.PictureBoxImagePreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBoxImagePreview.TabIndex = 13
         Me.PictureBoxImagePreview.TabStop = False
-        '
-        'CheckBoxByAuthor
-        '
-        Me.CheckBoxByAuthor.AutoSize = True
-        Me.CheckBoxByAuthor.Location = New System.Drawing.Point(423, 42)
-        Me.CheckBoxByAuthor.Name = "CheckBoxByAuthor"
-        Me.CheckBoxByAuthor.Size = New System.Drawing.Size(57, 17)
-        Me.CheckBoxByAuthor.TabIndex = 13
-        Me.CheckBoxByAuthor.Text = "Author"
-        Me.CheckBoxByAuthor.UseVisualStyleBackColor = True
         '
         'CheckBoxByName
         '
@@ -420,7 +408,6 @@ Partial Class Form1
     Friend WithEvents ButtonEdit As System.Windows.Forms.Button
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
     Friend WithEvents PictureBoxImagePreview As System.Windows.Forms.PictureBox
-    Friend WithEvents CheckBoxByAuthor As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBoxByName As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBoxById As System.Windows.Forms.CheckBox
     Friend WithEvents TextBoxSearch As System.Windows.Forms.TextBox

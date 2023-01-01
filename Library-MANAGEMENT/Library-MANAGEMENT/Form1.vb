@@ -34,22 +34,22 @@ Public Class Form1
         Dim arrImage() As Byte
 
         If TextBoxId.Text = "" Then
-            MessageBox.Show("Name cannot be empty !!!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Id cannot be empty !!!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
         If TextBoxName.Text = "" Then
-            MessageBox.Show("Price cannot be empty !!!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Name cannot be empty !!!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
         If TextBoxAuthor.Text = "" Then
-            MessageBox.Show("Amount cannot be empty !!!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Author cannot be empty !!!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
         If TextBoxShelf.Text = "" Then
-            MessageBox.Show("Amount cannot be empty !!!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Shelf cannot be empty !!!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
@@ -73,7 +73,7 @@ Public Class Form1
             Try
                 MySQLCMD = New MySqlCommand
                 With MySQLCMD
-                    .CommandText = "INSERT INTO " & Table_Name & " (Name, ID, Price, Amount, Images) VALUES (@name, @id, @price, @amount, @images)"
+                    .CommandText = "INSERT INTO " & Table_Name & " (B_Id, B_Name, B_Author, B_Shelf, B_Image) VALUES (@id, @name, @author, @shelf, @images)"
                     .Connection = Connection
                     .Parameters.AddWithValue("@id", TextBoxId.Text)
                     .Parameters.AddWithValue("@name", TextBoxName.Text)
@@ -108,7 +108,7 @@ Public Class Form1
                 Try
                     MySQLCMD = New MySqlCommand
                     With MySQLCMD
-                        .CommandText = "UPDATE " & Table_Name & " SET  Name=@name,Price=@price,Amount=@amount,Images=@images WHERE ID=@id "
+                        .CommandText = "UPDATE " & Table_Name & " SET  B_Name=@name,B_Author=@author,B_Shelf=@shelf,B_Image=@images WHERE B_Id=@id "
                         .Connection = Connection
                         .Parameters.AddWithValue("@id", TextBoxId.Text)
                         .Parameters.AddWithValue("@name", TextBoxName.Text)
@@ -142,7 +142,7 @@ Public Class Form1
                 Try
                     MySQLCMD = New MySqlCommand
                     With MySQLCMD
-                        .CommandText = "UPDATE " & Table_Name & " SET  Name=@name,Price=@price,Amount=@amount WHERE ID=@id "
+                        .CommandText = "UPDATE " & Table_Name & " SET  B_Name=@name,B_Author=@author,B_Shelf=@shelf WHERE B_Id=@id "
                         .Connection = Connection
                         .Parameters.AddWithValue("@name", TextBoxName.Text)
                         .Parameters.AddWithValue("@id", TextBoxId.Text)
@@ -184,7 +184,7 @@ Public Class Form1
         Try
             If LoadImagesStr = False Then
                 MySQLCMD.CommandType = CommandType.Text
-                MySQLCMD.CommandText = "SELECT Name, ID, Price, Amount FROM " & Table_Name & " ORDER BY Name"
+                MySQLCMD.CommandText = "SELECT B_Id, B_Name, B_Author, B_Shelf FROM book  ORDER BY B_Name"
                 MySQLDA = New MySqlDataAdapter(MySQLCMD.CommandText, Connection)
                 DT = New DataTable
                 Data = MySQLDA.Fill(DT)
@@ -199,12 +199,12 @@ Public Class Form1
                 End If
             Else
                 MySQLCMD.CommandType = CommandType.Text
-                MySQLCMD.CommandText = "SELECT Images FROM " & Table_Name & " WHERE ID LIKE " & IDRam
+                MySQLCMD.CommandText = "SELECT B_Image FROM " & Table_Name & " WHERE B_Id LIKE " & IDRam
                 MySQLDA = New MySqlDataAdapter(MySQLCMD.CommandText, Connection)
                 DT = New DataTable
                 Data = MySQLDA.Fill(DT)
                 If Data > 0 Then
-                    Dim ImgArray() As Byte = DT.Rows(0).Item("Images")
+                    Dim ImgArray() As Byte = DT.Rows(0).Item("B_Image")
                     Dim lmgStr As New System.IO.MemoryStream(ImgArray)
                     PictureBoxImagePreview.Image = Image.FromStream(lmgStr)
                     PictureBoxImagePreview.SizeMode = PictureBoxSizeMode.Zoom
@@ -298,7 +298,7 @@ Public Class Form1
             For Each row As DataGridViewRow In DataGridView1.SelectedRows
                 If row.Selected = True Then
                     MySQLCMD.CommandType = CommandType.Text
-                    MySQLCMD.CommandText = "DELETE FROM " & Table_Name & " WHERE ID='" & row.DataBoundItem(1).ToString & "'"
+                    MySQLCMD.CommandText = "DELETE FROM " & Table_Name & " WHERE B_Id='" & row.DataBoundItem(1).ToString & "'"
                     MySQLCMD.Connection = Connection
                     MySQLCMD.ExecuteNonQuery()
                 End If
@@ -326,10 +326,10 @@ Public Class Form1
                         If e.RowIndex >= 0 Then
                             i = .CurrentRow.Index
                             LoadImagesStr = True
-                            IDRam = .Rows(i).Cells("ID").Value.ToString
-                            NameRam = .Rows(i).Cells("Name").Value.ToString
-                            AuthorRam = .Rows(i).Cells("Price").Value.ToString
-                            ShelfRam = .Rows(i).Cells("Amount").Value.ToString
+                            IDRam = .Rows(i).Cells("B_Id").Value.ToString
+                            NameRam = .Rows(i).Cells("B_Name").Value.ToString
+                            AuthorRam = .Rows(i).Cells("B_Author").Value.ToString
+                            ShelfRam = .Rows(i).Cells("B_Shelf").Value.ToString
                             ShowData()
                         End If
                     End With
@@ -364,16 +364,16 @@ Public Class Form1
     Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
         If CheckBoxById.Checked = True Then
             If TextBoxSearch.Text = Nothing Then
-                SqlCmdSearchstr = "SELECT B_Id, B_Name, B_Author, B_Shelf FROM " & Table_Name & " ORDER BY Name"
+                SqlCmdSearchstr = "SELECT B_Id, B_Name, B_Author, B_Shelf FROM " & Table_Name & " ORDER BY B_Name"
             Else
-                SqlCmdSearchstr = "SELECT B_Id, B_Name, B_Author, B_Shelf FROM " & Table_Name & " WHERE ID LIKE'" & TextBoxSearch.Text & "%'"
+                SqlCmdSearchstr = "SELECT B_Id, B_Name, B_Author, B_Shelf FROM " & Table_Name & " WHERE B_Id LIKE'" & TextBoxSearch.Text & "%'"
             End If
         End If
         If CheckBoxByName.Checked = True Then
             If TextBoxSearch.Text = Nothing Then
-                SqlCmdSearchstr = "SELECT B_Id, B_Name, B_Author, B_Shelf FROM " & Table_Name & " ORDER BY Name"
+                SqlCmdSearchstr = "SELECT B_Id, B_Name, B_Author, B_Shelf FROM " & Table_Name & " ORDER BY B_Name"
             Else
-                SqlCmdSearchstr = "SELECT B_Id, B_Name, B_Author, B_Shelf FROM " & Table_Name & " WHERE Name LIKE'" & TextBoxSearch.Text & "%'"
+                SqlCmdSearchstr = "SELECT B_Id, B_Name, B_Author, B_Shelf FROM " & Table_Name & " WHERE B_Name LIKE'" & TextBoxSearch.Text & "%'"
             End If
         End If
 
