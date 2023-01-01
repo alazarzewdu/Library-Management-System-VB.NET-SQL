@@ -227,6 +227,9 @@ Public Class Form1
         TextBoxId.Text = ""
         TextBoxAuthor.Text = ""
         TextBoxShelf.Text = ""
+        PictureBoxImageInput.Image = My.Resources.image
+
+
 
     End Sub
 
