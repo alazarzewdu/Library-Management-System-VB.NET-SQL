@@ -33,17 +33,22 @@ Public Class Form1
         Dim mstream As New System.IO.MemoryStream()
         Dim arrImage() As Byte
 
-        If TextBoxName.Text = "" Then
+        If TextBoxId.Text = "" Then
             MessageBox.Show("Name cannot be empty !!!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
-        If TextBoxPrice.Text = "" Then
+        If TextBoxName.Text = "" Then
             MessageBox.Show("Price cannot be empty !!!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
-        If TextBoxAmount.Text = "" Then
+        If TextBoxAuthor.Text = "" Then
+            MessageBox.Show("Amount cannot be empty !!!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        If TextBoxShelf.Text = "" Then
             MessageBox.Show("Amount cannot be empty !!!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
@@ -70,10 +75,10 @@ Public Class Form1
                 With MySQLCMD
                     .CommandText = "INSERT INTO " & Table_Name & " (Name, ID, Price, Amount, Images) VALUES (@name, @id, @price, @amount, @images)"
                     .Connection = Connection
-                    .Parameters.AddWithValue("@name", TextBoxName.Text)
                     .Parameters.AddWithValue("@id", TextBoxId.Text)
-                    .Parameters.AddWithValue("@price", TextBoxPrice.Text)
-                    .Parameters.AddWithValue("@amount", TextBoxAmount.Text)
+                    .Parameters.AddWithValue("@name", TextBoxName.Text)
+                    .Parameters.AddWithValue("@author", TextBoxAuthor.Text)
+                    .Parameters.AddWithValue("@shelf", TextBoxShelf.Text)
                     .Parameters.AddWithValue("@images", arrImage)
                     .ExecuteNonQuery()
                 End With
@@ -105,17 +110,17 @@ Public Class Form1
                     With MySQLCMD
                         .CommandText = "UPDATE " & Table_Name & " SET  Name=@name,Price=@price,Amount=@amount,Images=@images WHERE ID=@id "
                         .Connection = Connection
-                        .Parameters.AddWithValue("@name", TextBoxName.Text)
                         .Parameters.AddWithValue("@id", TextBoxId.Text)
-                        .Parameters.AddWithValue("@price", TextBoxPrice.Text)
-                        .Parameters.AddWithValue("@amount", TextBoxAmount.Text)
+                        .Parameters.AddWithValue("@name", TextBoxName.Text)
+                        .Parameters.AddWithValue("@author", TextBoxAuthor.Text)
+                        .Parameters.AddWithValue("@shelf", TextBoxShelf.Text)
                         .Parameters.AddWithValue("@images", arrImage)
                         .ExecuteNonQuery()
                     End With
                     MsgBox("Data updated successfully", MsgBoxStyle.Information, "Information")
                     IMG_FileNameInput = ""
                     ButtonSave.Text = "Save"
-                    ButtonIDMaker.Enabled = True
+
                     TextBoxId.Enabled = True
                     ClearInputUpdateData()
                 Catch ex As Exception
@@ -141,13 +146,12 @@ Public Class Form1
                         .Connection = Connection
                         .Parameters.AddWithValue("@name", TextBoxName.Text)
                         .Parameters.AddWithValue("@id", TextBoxId.Text)
-                        .Parameters.AddWithValue("@price", TextBoxPrice.Text)
-                        .Parameters.AddWithValue("@amount", TextBoxAmount.Text)
+                        .Parameters.AddWithValue("@author", TextBoxAuthor.Text)
+                        .Parameters.AddWithValue("@shelf", TextBoxShelf.Text)
                         .ExecuteNonQuery()
                     End With
                     MsgBox("Data updated successfully", MsgBoxStyle.Information, "Information")
                     ButtonSave.Text = "Save"
-                    ButtonIDMaker.Enabled = True
                     TextBoxId.Enabled = True
                     ClearInputUpdateData()
                 Catch ex As Exception
@@ -221,16 +225,15 @@ Public Class Form1
     Private Sub ClearInputUpdateData()
         TextBoxName.Text = ""
         TextBoxId.Text = ""
-        TextBoxPrice.Text = ""
-        TextBoxAmount.Text = ""
-        PictureBoxImageInput.Image = My.Resources.Click_to_browse
+        TextBoxAuthor.Text = ""
+        TextBoxShelf.Text = ""
+
     End Sub
 
 
     Private Sub ButtonClearAll_Click(sender As Object, e As EventArgs) Handles ButtonClearAll.Click
         ButtonSave.Text = "Save"
         StatusInput = "Save"
-        ButtonIDMaker.Enabled = True
         TextBoxId.Enabled = True
         ClearInputUpdateData()
     End Sub
@@ -241,9 +244,8 @@ Public Class Form1
             PictureBoxImageInput.Image = PictureBoxImagePreview.Image
             TextBoxName.Text = NameRam
             TextBoxId.Text = IDRam
-            TextBoxPrice.Text = PriceRam
-            TextBoxAmount.Text = AmountRam
-            ButtonIDMaker.Enabled = False
+            TextBoxAuthor.Text = AuthorRam
+            TextBoxShelf.Text = ShelfRam
             TextBoxId.Enabled = False
             ButtonSave.Text = "Update"
             StatusInput = "Update"
@@ -255,9 +257,8 @@ Public Class Form1
             PictureBoxImageInput.Image = PictureBoxImagePreview.Image
             TextBoxName.Text = NameRam
             TextBoxId.Text = IDRam
-            TextBoxPrice.Text = PriceRam
-            TextBoxAmount.Text = AmountRam
-            ButtonIDMaker.Enabled = False
+            TextBoxAuthor.Text = AuthorRam
+            TextBoxShelf.Text = ShelfRam
             TextBoxId.Enabled = False
             ButtonSave.Text = "Update"
             StatusInput = "Update"
@@ -327,8 +328,8 @@ Public Class Form1
                             LoadImagesStr = True
                             IDRam = .Rows(i).Cells("ID").Value.ToString
                             NameRam = .Rows(i).Cells("Name").Value.ToString
-                            PriceRam = .Rows(i).Cells("Price").Value.ToString
-                            AmountRam = .Rows(i).Cells("Amount").Value.ToString
+                            AuthorRam = .Rows(i).Cells("Price").Value.ToString
+                            ShelfRam = .Rows(i).Cells("Amount").Value.ToString
                             ShowData()
                         End If
                     End With
@@ -363,16 +364,16 @@ Public Class Form1
     Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
         If CheckBoxById.Checked = True Then
             If TextBoxSearch.Text = Nothing Then
-                SqlCmdSearchstr = "SELECT Name, ID, Price, Amount FROM " & Table_Name & " ORDER BY Name"
+                SqlCmdSearchstr = "SELECT B_Id, B_Name, B_Author, B_Shelf FROM " & Table_Name & " ORDER BY Name"
             Else
-                SqlCmdSearchstr = "SELECT Name, ID, Price, Amount FROM " & Table_Name & " WHERE ID LIKE'" & TextBoxSearch.Text & "%'"
+                SqlCmdSearchstr = "SELECT B_Id, B_Name, B_Author, B_Shelf FROM " & Table_Name & " WHERE ID LIKE'" & TextBoxSearch.Text & "%'"
             End If
         End If
         If CheckBoxByName.Checked = True Then
             If TextBoxSearch.Text = Nothing Then
-                SqlCmdSearchstr = "SELECT Name, ID, Price, Amount FROM " & Table_Name & " ORDER BY Name"
+                SqlCmdSearchstr = "SELECT B_Id, B_Name, B_Author, B_Shelf FROM " & Table_Name & " ORDER BY Name"
             Else
-                SqlCmdSearchstr = "SELECT Name, ID, Price, Amount FROM " & Table_Name & " WHERE Name LIKE'" & TextBoxSearch.Text & "%'"
+                SqlCmdSearchstr = "SELECT B_Id, B_Name, B_Author, B_Shelf FROM " & Table_Name & " WHERE Name LIKE'" & TextBoxSearch.Text & "%'"
             End If
         End If
 
