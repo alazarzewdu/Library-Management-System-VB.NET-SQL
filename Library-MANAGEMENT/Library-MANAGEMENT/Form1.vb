@@ -292,4 +292,8 @@
         Connection.Close()
         ShowData()
     End Sub
+
+    Private Sub ButtonRefresh_Click(sender As Object, e As EventArgs) Handles ButtonRefresh.Click
+        ShowData()
+    End Sub
 End Class
