@@ -332,4 +332,56 @@
     Private Sub EditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditToolStripMenuItem.Click
         ButtonEdit_Click(sender, e)
     End Sub
+
+    Private Sub SelectAllToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SelectAllToolStripMenuItem.Click
+        DataGridView1.SelectAll()
+    End Sub
+
+    Private Sub ButtonClearSelectedandImagePreview_Click(sender As Object, e As EventArgs) Handles ButtonClearSelectedandImagePreview.Click
+        DataGridView1.ClearSelection()
+        PictureBoxImagePreview.Image = Nothing
+    End Sub
+
+    Private Sub TextBoxSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearch.TextChanged
+        If CheckBoxById.Checked = True Then
+            If TextBoxSearch.Text = Nothing Then
+                SqlCmdSearchstr = "SELECT Name, ID, Price, Amount FROM " & Table_Name & " ORDER BY Name"
+            Else
+                SqlCmdSearchstr = "SELECT Name, ID, Price, Amount FROM " & Table_Name & " WHERE ID LIKE'" & TextBoxSearch.Text & "%'"
+            End If
+        End If
+        If CheckBoxByName.Checked = True Then
+            If TextBoxSearch.Text = Nothing Then
+                SqlCmdSearchstr = "SELECT Name, ID, Price, Amount FROM " & Table_Name & " ORDER BY Name"
+            Else
+                SqlCmdSearchstr = "SELECT Name, ID, Price, Amount FROM " & Table_Name & " WHERE Name LIKE'" & TextBoxSearch.Text & "%'"
+            End If
+        End If
+
+        Try
+            Connection.Open()
+        Catch ex As Exception
+            MessageBox.Show("Connection failed !!!" & vbCrLf & "Please check that the server is ready !!!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End Try
+
+        Try
+            MySQLDA = New MySqlDataAdapter(SqlCmdSearchstr, Connection)
+            DT = New DataTable
+            Data = MySQLDA.Fill(DT)
+            If Data > 0 Then
+                DataGridView1.DataSource = Nothing
+                DataGridView1.DataSource = DT
+                DataGridView1.Columns(2).DefaultCellStyle.Format = "c"
+                DataGridView1.DefaultCellStyle.ForeColor = Color.Black
+                DataGridView1.ClearSelection()
+            Else
+                DataGridView1.DataSource = DT
+            End If
+        Catch ex As Exception
+            MsgBox("Failed to search" & vbCr & ex.Message, MsgBoxStyle.Critical, "Error Message")
+            Connection.Close()
+        End Try
+        Connection.Close()
+    End Sub
 End Class
