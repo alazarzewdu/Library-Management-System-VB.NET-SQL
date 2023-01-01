@@ -22,7 +22,6 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TextBoxShelf = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -48,7 +47,6 @@ Partial Class Form1
         Me.ButtonEdit = New System.Windows.Forms.Button()
         Me.ButtonClearAll = New System.Windows.Forms.Button()
         Me.ButtonSave = New System.Windows.Forms.Button()
-        Me.ButtonIdMaker = New System.Windows.Forms.Button()
         Me.PictureBoxImageInput = New System.Windows.Forms.PictureBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -61,7 +59,6 @@ Partial Class Form1
         '
         Me.GroupBox1.Controls.Add(Me.ButtonClearAll)
         Me.GroupBox1.Controls.Add(Me.ButtonSave)
-        Me.GroupBox1.Controls.Add(Me.ButtonIdMaker)
         Me.GroupBox1.Controls.Add(Me.TextBoxShelf)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.TextBoxAuthor)
@@ -332,18 +329,6 @@ Partial Class Form1
         Me.ButtonSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ButtonSave.UseVisualStyleBackColor = True
         '
-        'ButtonIdMaker
-        '
-        Me.ButtonIdMaker.Image = CType(resources.GetObject("ButtonIdMaker.Image"), System.Drawing.Image)
-        Me.ButtonIdMaker.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ButtonIdMaker.Location = New System.Drawing.Point(245, 27)
-        Me.ButtonIdMaker.Name = "ButtonIdMaker"
-        Me.ButtonIdMaker.Size = New System.Drawing.Size(92, 22)
-        Me.ButtonIdMaker.TabIndex = 10
-        Me.ButtonIdMaker.Text = "Generate"
-        Me.ButtonIdMaker.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ButtonIdMaker.UseVisualStyleBackColor = True
-        '
         'PictureBoxImageInput
         '
         Me.PictureBoxImageInput.Image = Global.Library_MANAGEMENT.My.Resources.Resources.image1
@@ -380,7 +365,6 @@ Partial Class Form1
     Friend WithEvents PictureBoxImageInput As System.Windows.Forms.PictureBox
     Friend WithEvents ButtonClearAll As System.Windows.Forms.Button
     Friend WithEvents ButtonSave As System.Windows.Forms.Button
-    Friend WithEvents ButtonIdMaker As System.Windows.Forms.Button
     Friend WithEvents TextBoxShelf As System.Windows.Forms.TextBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents TextBoxAuthor As System.Windows.Forms.TextBox
