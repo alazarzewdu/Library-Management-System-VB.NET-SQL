@@ -384,4 +384,16 @@
         End Try
         Connection.Close()
     End Sub
+
+    
+
+   
+    Private Sub CheckBoxByName_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxByName.CheckedChanged
+        If CheckBoxByName.Checked = True Then
+            CheckBoxById.Checked = False
+        End If
+        If CheckBoxByName.Checked = False Then
+            CheckBoxById.Checked = True
+        End If
+    End Sub
 End Class
