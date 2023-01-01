@@ -53,6 +53,7 @@ Partial Class Form1
         Me.ButtonRefresh = New System.Windows.Forms.Button()
         Me.ButtonDelete = New System.Windows.Forms.Button()
         Me.ButtonEdit = New System.Windows.Forms.Button()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.GroupBox1.SuspendLayout()
         CType(Me.PictureBoxImageInput, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
@@ -373,6 +374,10 @@ Partial Class Form1
         Me.ButtonEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ButtonEdit.UseVisualStyleBackColor = True
         '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -426,5 +431,6 @@ Partial Class Form1
     Friend WithEvents DeleteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SelectAllToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OpenFileDialog1 As System.Windows.Forms.OpenFileDialog
 
 End Class

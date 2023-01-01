@@ -1,6 +1,23 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class Form1
 
+
+    Dim Connection As New MySqlConnection("server=localhost; user=root; password=; database=unity")
+    Dim MySQLCMD As New MySqlCommand
+    Dim MySQLDA As New MySqlDataAdapter
+    Dim DT As New DataTable
+
+    Dim Table_Name As String = "book" 
+    Dim Data As Integer
+
+    Dim LoadImagesStr As Boolean = False
+    Dim IDRam, NameRam, AuthorRam, ShelfRam As String
+    Dim IMG_FileNameInput As String
+    Dim StatusInput As String = "Save"
+    Dim SqlCmdSearchstr As String
+    Dim Col0Ram As Integer = 0
+
+
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBoxImageInput.Click
         OpenFileDialog1.FileName = ""
         'OpenFileDialog1.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.Desktop
