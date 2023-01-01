@@ -296,4 +296,28 @@
     Private Sub ButtonRefresh_Click(sender As Object, e As EventArgs) Handles ButtonRefresh.Click
         ShowData()
     End Sub
+
+    Private Sub DataGridView1_CellMouseDown(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView1.CellMouseDown
+        Try
+            If AllCellsSelected(DataGridView1) = False Then
+                If e.Button = MouseButtons.Left Then
+                    DataGridView1.CurrentCell = DataGridView1(e.ColumnIndex, e.RowIndex)
+                    Dim i As Integer
+                    With DataGridView1
+                        If e.RowIndex >= 0 Then
+                            i = .CurrentRow.Index
+                            LoadImagesStr = True
+                            IDRam = .Rows(i).Cells("ID").Value.ToString
+                            NameRam = .Rows(i).Cells("Name").Value.ToString
+                            PriceRam = .Rows(i).Cells("Price").Value.ToString
+                            AmountRam = .Rows(i).Cells("Amount").Value.ToString
+                            ShowData()
+                        End If
+                    End With
+                End If
+            End If
+        Catch ex As Exception
+            Return
+        End Try
+    End Sub
 End Class
