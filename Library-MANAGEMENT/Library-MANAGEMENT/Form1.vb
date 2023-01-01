@@ -396,4 +396,13 @@
             CheckBoxById.Checked = True
         End If
     End Sub
+
+    Private Sub CheckBoxById_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxById.CheckedChanged
+        If CheckBoxById.Checked = True Then
+            CheckBoxByName.Checked = False
+        End If
+        If CheckBoxById.Checked = False Then
+            CheckBoxByName.Checked = True
+        End If
+    End Sub
 End Class
