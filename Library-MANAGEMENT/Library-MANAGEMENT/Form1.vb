@@ -216,4 +216,35 @@
         TextBoxId.Enabled = True
         ClearInputUpdateData()
     End Sub
+
+    Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEdit.Click
+        If DataGridView1.RowCount = 1 Then
+            PictureBoxImageInput.Image = Nothing
+            PictureBoxImageInput.Image = PictureBoxImagePreview.Image
+            TextBoxName.Text = NameRam
+            TextBoxId.Text = IDRam
+            TextBoxPrice.Text = PriceRam
+            TextBoxAmount.Text = AmountRam
+            ButtonIDMaker.Enabled = False
+            TextBoxId.Enabled = False
+            ButtonSave.Text = "Update"
+            StatusInput = "Update"
+            Return
+        End If
+
+        If AllCellsSelected(DataGridView1) = False Then
+            PictureBoxImageInput.Image = Nothing
+            PictureBoxImageInput.Image = PictureBoxImagePreview.Image
+            TextBoxName.Text = NameRam
+            TextBoxId.Text = IDRam
+            TextBoxPrice.Text = PriceRam
+            TextBoxAmount.Text = AmountRam
+            ButtonIDMaker.Enabled = False
+            TextBoxId.Enabled = False
+            ButtonSave.Text = "Update"
+            StatusInput = "Update"
+        Else
+            MsgBox("Cannot edit !!! " & vbCr & "Please choose one to edit.", MsgBoxStyle.Critical, "Error Message")
+        End If
+    End Sub
 End Class
