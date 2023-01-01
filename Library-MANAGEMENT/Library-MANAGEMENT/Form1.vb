@@ -1,4 +1,5 @@
-﻿Public Class Form1
+﻿Imports MySql.Data.MySqlClient
+Public Class Form1
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBoxImageInput.Click
         OpenFileDialog1.FileName = ""
@@ -202,13 +203,13 @@
 
     Private Sub ClearInputUpdateData()
         TextBoxName.Text = ""
-        TextBoxID.Text = ""
+        TextBoxId.Text = ""
         TextBoxPrice.Text = ""
         TextBoxAmount.Text = ""
         PictureBoxImageInput.Image = My.Resources.Click_to_browse
     End Sub
 
-   
+
     Private Sub ButtonClearAll_Click(sender As Object, e As EventArgs) Handles ButtonClearAll.Click
         ButtonSave.Text = "Save"
         StatusInput = "Save"
@@ -385,9 +386,9 @@
         Connection.Close()
     End Sub
 
-    
 
-   
+
+
     Private Sub CheckBoxByName_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxByName.CheckedChanged
         If CheckBoxByName.Checked = True Then
             CheckBoxById.Checked = False
