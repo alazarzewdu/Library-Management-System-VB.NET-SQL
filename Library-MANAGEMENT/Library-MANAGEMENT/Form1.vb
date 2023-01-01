@@ -247,4 +247,49 @@
             MsgBox("Cannot edit !!! " & vbCr & "Please choose one to edit.", MsgBoxStyle.Critical, "Error Message")
         End If
     End Sub
+
+    Private Sub ButtonDelete_Click(sender As Object, e As EventArgs) Handles ButtonDelete.Click
+        If DataGridView1.RowCount = 0 Then
+            MsgBox("Cannot delete, table data is empty", MsgBoxStyle.Critical, "Error Message")
+            Return
+        End If
+
+        If DataGridView1.SelectedRows.Count = 0 Then
+            MsgBox("Cannot delete, select the table data to be deleted", MsgBoxStyle.Critical, "Error Message")
+            Return
+        End If
+
+        If MsgBox("Delete record?", MsgBoxStyle.Question + MsgBoxStyle.OkCancel, "Confirmation") = MsgBoxResult.Cancel Then Return
+
+        Try
+            Connection.Open()
+        Catch ex As Exception
+            MessageBox.Show("Connection failed !!!" & vbCrLf & "Please check that the server is ready !!!", "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End Try
+
+        Try
+            If AllCellsSelected(DataGridView1) = True Then
+                MySQLCMD.CommandType = CommandType.Text
+                MySQLCMD.CommandText = "DELETE FROM " & Table_Name
+                MySQLCMD.Connection = Connection
+                MySQLCMD.ExecuteNonQuery()
+            End If
+
+            For Each row As DataGridViewRow In DataGridView1.SelectedRows
+                If row.Selected = True Then
+                    MySQLCMD.CommandType = CommandType.Text
+                    MySQLCMD.CommandText = "DELETE FROM " & Table_Name & " WHERE ID='" & row.DataBoundItem(1).ToString & "'"
+                    MySQLCMD.Connection = Connection
+                    MySQLCMD.ExecuteNonQuery()
+                End If
+            Next
+        Catch ex As Exception
+            MsgBox("Failed to delete" & vbCr & ex.Message, MsgBoxStyle.Critical, "Error Message")
+            Connection.Close()
+        End Try
+        PictureBoxImagePreview.Image = Nothing
+        Connection.Close()
+        ShowData()
+    End Sub
 End Class
